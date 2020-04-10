@@ -1,0 +1,50 @@
+{% load static %}
+<div class="popular_courses">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="main_title">
+                    <h2 class="mb-3 ">আমাদের কোর্স সমুহ </h2>
+                    <p>
+                        সবাই মিলে সঠিক ভাবে, শেয়ার করি প্রোগ্রামিং ও সফটওয়্যার ডেভেলপমেন্টের খুঁটিনাটি
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- single course -->
+        <div class="row  d-flex ">
+            {% for courses_names in courses_names %}
+            <div class="col-lg-3 col-md-6 col-sm-6 single-trainer card ">
+                <div class="thumb d-flex justify-content-sm-center zoom mb-1">
+                    <a href="/{{courses_names.title}}/introduction/"><img src="{{courses_names.pic.url}}"
+                            alt="{{courses_names.name}}" /></a>
+                </div>
+                <div>
+                    <h4><a href="/{{courses_names.title}}/introduction/">{{courses_names.name}}</a></h4>
+                    <div>
+                        <p>
+                            {{courses_names.summary}}
+                        </p>
+                    </div>
+                    <div
+                        class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column">
+                        <div class="authr_meta">
+                            <img class="avatar" src="{% static 'img/courses/zuyel.jpg' %}" alt="" />
+                            <span class="d-inline-block ml-2"><a target="blank"
+                                    href="http://zuyelrana.pythonanywhere.com/"> জুয়েল রানা</a></span>
+                        </div>
+                        <div class="mt-lg-0 ">
+
+                            <span class="meta_info">
+                                <a href="/{{courses_names.title}}/introduction/"> <i
+                                        class="ti-share mr-2"></i>বিস্তারিত</a>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<section class="feature_area section_gap_top">
+    <div class="container">
+        <!-- Message Show -->
+        {% if messages %}
+        <ul style="height: 62px;text-align: center;padding: 21px !important;" class="messages mt-5 p-4">
+            {% for message in messages %}
+            <div{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {{ message }}{{s}}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </button>
+    </div>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <!--End Message Show -->
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="main_title">
+                <h2>দুর্দান্ত বৈশিষ্ট্য</h2>
+                <p>
+                    সহজ বাংলায় প্রোগ্রামিং জ্ঞান ছড়িয়ে দেয়ার প্রত্যয়ে আমাদের প্রচেষ্টা
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+                <div class="icon"><span class="flaticon-student"></span></div>
+                <div class="desc">
+                    <h4 class="mb-2">আমাদের শিক্ষা</h4>
+                    <p>
+                        "দেখবার জন্য আমাদের চোখের যেমন আলোর প্রয়োজন, ঠিক তেমনী কোনো প্রত্যয় অর্জন করবার জন্য
+                        আমাদের
+                        ভাবনার প্রয়োজন"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+                <div class="icon"><span class="flaticon-book"></span></div>
+                <div class="desc">
+                    <h4 class="mb-2">আমাদের কোর্স উদ্দেশ </h4>
+                    <p>
+                        " নিজের মাতৃ ভাষায় বাংলায় , প্রোগ্রামিং নিজে নিজে তৈরি হন এক জন প্রোগ্রামার ।সহজ বাংলায়
+                        প্রোগ্রামিং জ্ঞান ছড়িয়ে দেয়ার প্রত্যয়ে আমাদের প্রচেষ্টা "
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+                <div class="icon"><span class="flaticon-earth"></span></div>
+                <div class="desc">
+                    <h4 class="mb-2">বর্তমানে বিশ্ব</h4>
+                    <p>
+                        " বর্তমানে পৃথিবীতে সবকিছু হয় প্রোগ্রামিং এর দ্বারা । আপনি নিজেকে প্রমান করতে চাইলে শিখে
+                        ফেলুন নিজের মাতৃ ভাষায় বাংলায় "
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <hr>
+</section>

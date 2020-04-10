@@ -1,0 +1,53 @@
+<section class="contact_area section_gap">
+    <div class="container">
+        <div class="container"><iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d890896.4737972292!2d88.03623427269818!3d26.300391874295336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4ea80d334899d%3A0xb1d20210d004c712!2sThakurgaon%20Polytechnic%20Institute!5e0!3m2!1sen!2sbd!4v1567918670559!5m2!1sen!2sbd"
+                width=100% height="200px" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div>
+        <div class="row mt-2">
+            <div class="col-lg-3">
+                <div class="contact_info">
+                    <div class="info_item">
+                        <i class="ti-home"></i>
+                        <h6>ঠাকুরগাঁও, বাংলাদেশ </h6>
+                    </div>
+                    <div class="info_item">
+                        <i class="ti-headphone"></i>
+                        <h6><a href="#">০১৩০৩৫১০০৭৪</a></h6>
+                    </div>
+                    <div class="info_item">
+                        <i class="ti-email"></i>
+                        <h6><a href="#">zuyel76@gamil.com</a></h6>
+                        <p>আমাদের সাথে যোগাযোগ করুন!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <form class="row contact_form" action="." method="POST" id="contactForm">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="আপনার নাম"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'আপনার নাম'" required="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="আপনার ইমেইল"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'আপনার ইমেইল'" required="" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" id="message" rows="1"
+                                placeholder="আপনার বার্তা" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'আপনার বার্তা'" required=""></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <button type="submit" value="submit" class="btn primary-btn">
+                            আমাদের পাঠান
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

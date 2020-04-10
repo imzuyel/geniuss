@@ -1,0 +1,69 @@
+<div class="section_gap registration_area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="row clock_sec clockdiv" id="clockdiv">
+                    <div class="col-lg-12">
+                        <h1 class="mb-3">রেজিস্ট্রেশন করুন</h1>
+                        <p>
+                            আমাদের নতুন নতুন পোস্ট এর প্রজ্ঞাপন পেতে রেজিস্ট্রেশন করুন!!!
+                        </p>
+                    </div>
+                    <div style="display: inherit;" id="demo"></div>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="register_form">
+                    <h3>আমাদের কোর্সে রেজিস্ট্রেশন করুন </h3>
+                    <p>এটি শেখার জন্য সঠিক সময়</p>
+                    <form action="/" method="POST">
+                        {% csrf_token %}
+                        <div style="color: black !important;" class="row">
+                            <div class="col-lg-12 form_group">
+                                <input name="first_name" placeholder="আপনার  প্রথম নাম" required="" type="text" />
+                                <input name="last_name" placeholder="আপনার  শেষ  নাম" required="" type="text" />
+                                <input name="username" placeholder="ব্যবহারকারী নাম" required="" type="text" />
+                                <input name="email" placeholder="আপনার ইমেইল"
+                                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required=""
+                                    type="email" />
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <button type="submit" class="primary-btn">রেজিস্ট্রেশন</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jun 5, 2020 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = "<div  class='col clockinner1 clockinner'> <h1 class='days'>" + days + "</h1><span class='smalltext'>দিন</span> </div> " + "<div class='col clockinner1 clockinner'> <h1 class='hours'>" + hours + "</h1><span class='smalltext'>ঘণ্টা</span> </div> " + "<div class='col clockinner1 clockinner'> <h1 class='minutes'>" + minutes + "</h1><span class='smalltext'>মিনিট</span> </div> " + "<div class='col clockinner1 clockinner'> <h1 class='seconds'>" + seconds + "</h1><span class='smalltext'>সেকেন্ড</span> </div> "
+
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>

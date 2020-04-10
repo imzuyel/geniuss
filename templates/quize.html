@@ -1,0 +1,238 @@
+<style>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        font-family: Gotham Rounded;
+    }
+
+    :root {
+        --hue-neutral: 200;
+        --hue-wrong: 0;
+        --hue-correct: 145;
+    }
+
+    body {
+        --hue: var(--hue-neutral);
+        padding: 0;
+        margin: 0;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(var(--hue), 100%, 20%);
+    }
+
+    body.correct {
+        --hue: var(--hue-correct);
+    }
+
+    body.wrong {
+        --hue: var(--hue-wrong);
+    }
+
+    .container {
+        width: 800px;
+        max-width: 80%;
+        background-color: white;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 0 10px 2px;
+    }
+
+    .btn-grid {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .btn {
+        --hue: var(--hue-neutral);
+        border: 1px solid hsl(var(--hue), 100%, 30%);
+        background-color: hsl(var(--hue), 100%, 50%);
+        border-radius: 5px;
+        padding: 5px 10px;
+        color: white;
+        outline: none;
+    }
+
+    .btn:hover {
+        border-color: black;
+    }
+
+    .btn.correct {
+        --hue: var(--hue-correct);
+        color: black;
+    }
+
+    .btn.wrong {
+        --hue: var(--hue-wrong);
+    }
+
+    .start-btn,
+    .next-btn {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 10px 20px;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hide {
+        display: none;
+    }
+</style>
+
+
+<div class="container">
+    {% for courses_list in courses_list %}
+
+    <p>{{courses_list.title}}</p>
+
+    </li>
+    {% endfor %}
+    <div id="question-container" class="hide">
+        <div id="question">Question</div>
+        <div id="answer-buttons" class="btn-grid">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
+        </div>
+    </div>
+    <div class="controls">
+        <button id="start-btn" class="start-btn btn">Start</button>
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+    </div>
+</div>
+
+<script>
+    const startButton = document.getElementById('start-btn')
+    const nextButton = document.getElementById('next-btn')
+    const questionContainerElement = document.getElementById('question-container')
+    const questionElement = document.getElementById('question')
+    const answerButtonsElement = document.getElementById('answer-buttons')
+
+    let shuffledQuestions, currentQuestionIndex
+
+    startButton.addEventListener('click', startGame)
+    nextButton.addEventListener('click', () => {
+        currentQuestionIndex++
+        setNextQuestion()
+    })
+
+    function startGame() {
+        startButton.classList.add('hide')
+        shuffledQuestions = questions.sort(() => Math.random() - .5)
+        currentQuestionIndex = 0
+        questionContainerElement.classList.remove('hide')
+        setNextQuestion()
+    }
+
+    function setNextQuestion() {
+        resetState()
+        showQuestion(shuffledQuestions[currentQuestionIndex])
+    }
+
+    function showQuestion(question) {
+        questionElement.innerText = question.question
+        question.answers.forEach(answer => {
+            const button = document.createElement('button')
+            button.innerText = answer.text
+            button.classList.add('btn')
+            if (answer.correct) {
+                button.dataset.correct = answer.correct
+            }
+            button.addEventListener('click', selectAnswer)
+            answerButtonsElement.appendChild(button)
+        })
+    }
+
+    function resetState() {
+        clearStatusClass(document.body)
+        nextButton.classList.add('hide')
+        while (answerButtonsElement.firstChild) {
+            answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+        }
+    }
+
+    function selectAnswer(e) {
+        const selectedButton = e.target
+        const correct = selectedButton.dataset.correct
+        setStatusClass(document.body, correct)
+        Array.from(answerButtonsElement.children).forEach(button => {
+            setStatusClass(button, button.dataset.correct)
+        })
+        if (shuffledQuestions.length > currentQuestionIndex + 1) {
+            nextButton.classList.remove('hide')
+        } else {
+            startButton.innerText = 'Restart'
+            startButton.classList.remove('hide')
+        }
+    }
+
+    function setStatusClass(element, correct) {
+        clearStatusClass(element)
+        if (correct) {
+            element.classList.add('correct')
+        } else {
+            element.classList.add('wrong')
+        }
+    }
+
+    function clearStatusClass(element) {
+        element.classList.remove('correct')
+        element.classList.remove('wrong')
+    }
+
+    const questions = [
+        {
+            question: '{{ single.question1 }} ',
+            answers: [
+                { text: '{{ single.op1 }}', correct: '{{single.ans1}}' },
+                { text: '{{ single.op11 }}', correct: '{{single.ans11}' }
+            ]
+        },
+        {
+            question: '{{ single.question2 }}?',
+            answers: [
+                { text: '{{ single.op2 }}', correct: '{{single.ans2}}' },
+                { text: '{{ single.op22 }}', correct: '{{single.ans22}}' },
+                { text: '{{ single.op222 }}', correct: '{{single.ans222}}' },
+                { text: '{{ single.op2222 }}', correct: '{{single.ans2222}}' }
+            ]
+        },
+        {
+            question: '{{ single.question3 |safe }}?',
+            answers: [
+                { text: '{{ single.op3 }}', correct: '{{single.ans3}}' },
+                { text: '{{ single.op33 }}', correct: '{{single.ans33}}' },
+                { text: '{{ single.op333 }}', correct: '{{single.ans333}}' },
+                { text: '{{ single.op3333 }}', correct: '{{single.ans3333}}' }
+            ]
+        },
+        {
+            question: '{{ single.question4 }}?',
+            answers: [
+                { text: '{{ single.op4 }}', correct: '{{single.ans4}}' },
+                { text: '{{ single.op44 }}', correct: '{{single.ans44}}' }
+            ]
+        },
+        {
+            question: '{{ single.question5 }} ?',
+            answers: [
+                { text: '{{ single.op5 }}', correct: '{{single.ans5}}' },
+                { text: '{{ single.op55 }}', correct: '{{single.ans55}}' },
+                { text: '{{ single.op555 }}', correct: '{{single.ans555}}' },
+                { text: '{{ single.op555 }}', correct: '{{single.ans5555}}' }
+            ]
+        }
+    ]
+</script>
+<!-- Quize -->

@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="{% static 'img/favicon.png'%}" type="image/png">
+        <!-- Title -->
+        {% block title %}
+        {% endblock title %}
+        <!--End Title -->
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %} ">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/flaticon.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/themify-icons.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'vendors/nice-select/css/nice-select.css' %}">
+        <link href="{% static 'css/github.css' %}" rel="stylesheet">
+        <!-- main css -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <!-- Quize -->
+
+
+
+        {% block style %}
+
+        {% endblock style %}
+
+    </head>
+
+    <body style="background-color: #f8fafc">
+        <!--================ Start Header Menu Area =================-->
+        {% include 'all/header.html' %}
+        <!--================ End Header Menu Area =================-->
+
+        <!--================ Body  =================-->
+
+        {% block content %}
+
+        {% endblock content %}
+
+        <!--================ Body  =================-->
+        <!--================ Start footer Area  =================-->
+        {% include 'all/footer-area.html' %}
+        <!--================ End footer Area  =================-->
