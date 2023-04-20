@@ -19,7 +19,7 @@ django-tinymce4-widget==4.0.0
 django-widget-tweaks==1.4.5
 google-api-python-client==1.4.1
 gunicorn==19.9.0
-httplib2==0.13.0
+httplib2==0.19.0
 idna==2.8
 jsmin==2.2.2
 mysqlclient==1.4.2
