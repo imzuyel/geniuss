@@ -8,7 +8,7 @@ django-allauth==0.39.1
 django-ckeditor==5.7.1
 django-cleanhtmlfield==1.0.2
 django-crispy-forms==1.7.2
-django-filter==2.1.0
+django-filter==2.4.0
 django-html-field==0.1.3
 django-jet==1.0.8
 django-js-asset==1.2.2
